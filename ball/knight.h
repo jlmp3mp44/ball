@@ -4,6 +4,6 @@
 #include <SFML/Graphics.hpp>
 using namespace sf;
 
-void moving(bool& movingForward, Sprite& knighter, float KnightSpeed);
+void moving(bool& movingForward, Sprite& knighter,Sprite& apple, float KnightSpeed, float AppleSpeed);
 void throwApple(Sprite& apple, float time);
 #endif 

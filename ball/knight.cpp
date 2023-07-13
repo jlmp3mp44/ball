@@ -3,35 +3,34 @@
 #include "knight.h"
 #include <iostream>
 using namespace sf;
-void moving(bool& movingForward, Sprite& knighter, float KnightSpeed) {
+void moving(bool& movingForward, Sprite& knighter,Sprite& apple,  float KnightSpeed, float AppleSpeed) {
     if (movingForward)
     {
         knighter.move(KnightSpeed, 0);
+        apple.move(AppleSpeed, 0);
         if (knighter.getPosition().x >= 900) // якщо лицар дос€г к≥нц€ вперед
             movingForward = false; // «м≥нити напр€мок на назад
     }
     else
     {
         knighter.move(-KnightSpeed, 0);
-        if (knighter.getPosition().x <= 800) // якщо лицар дос€г к≥нц€ назад
+        apple.move(-AppleSpeed, 0);
+        if (knighter.getPosition().x <= 600) // якщо лицар дос€г к≥нц€ назад
             movingForward = true; // «м≥нити напр€мок на вперед
 
     }
 }
 
-const float SlopeSpeed = 50.0f; // √оризонтальна швидк≥сть
-const float SlopeAngle = 10.0f; //  ут кидка (в градусах)
-const float FlightTime = 5.0f; // „ас польоту (у секундах)
+const float SlopeSpeed = 180.0f; // √оризонтальна швидк≥сть
+const float SlopeAngle = 45.0f; //  ут кидка (в градусах)
 
 void throwApple(Sprite& apple, float time) {
+    const float UpwardSpeed = 20.0f; // Ўвидк≥сть руху вгору
+
     float angleRad = SlopeAngle * 3.14f / 180.0f; // ѕереведенн€ кута у рад≥ани
     float displacementX = SlopeSpeed * std::cos(angleRad) * time; // √оризонтальне зм≥щенн€
-    float displacementY = SlopeSpeed * std::sin(angleRad) * time - (0.5f * 9.8f * time * time); // ¬ертикальне зм≥щенн€ з урахуванн€м грав≥тац≥њ
+    float displacementY = UpwardSpeed * time; // ¬ертикальне зм≥щенн€ вгору
 
-    if (time <= FlightTime) {
-        std::cout << 1;
-        apple.setPosition(displacementX, -displacementY); // «астосуванн€ зм≥щень до позиц≥њ спрайту
-        time += 0.05f;
-        throwApple(apple, time);
-    }
+
+    apple.setPosition(-displacementX+800, -displacementY+600);
 }

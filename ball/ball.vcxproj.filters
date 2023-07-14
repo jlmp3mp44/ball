@@ -21,9 +21,15 @@
     <ClCompile Include="knight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="backGround.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="knight.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="back.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

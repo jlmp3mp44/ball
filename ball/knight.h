@@ -4,6 +4,6 @@
 #include <SFML/Graphics.hpp>
 using namespace sf;
 
-void moving(bool& movingForward, Sprite& knighter,Sprite& apple, float KnightSpeed, float AppleSpeed);
-void throwApple(Sprite& apple, float time);
+void moving(bool& movingForward, Sprite& knighter, Sprite& apple, Sprite& line, float KnightSpeed, float AppleSpeed, float lineSpeed);
+void throwApple(Sprite& apple, std::vector<Sprite> scaling);
 #endif 

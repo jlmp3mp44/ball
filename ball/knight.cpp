@@ -3,11 +3,12 @@
 #include "knight.h"
 #include <iostream>
 using namespace sf;
-void moving(bool& movingForward, Sprite& knighter,Sprite& apple,  float KnightSpeed, float AppleSpeed) {
+void moving(bool& movingForward, Sprite& knighter,Sprite& apple, Sprite& line,   float KnightSpeed, float AppleSpeed, float lineSpeed) {
     if (movingForward)
     {
         knighter.move(KnightSpeed, 0);
         apple.move(AppleSpeed, 0);
+        line.move(lineSpeed, 0);
         if (knighter.getPosition().x >= 900) // якщо лицар дос€г к≥нц€ вперед
             movingForward = false; // «м≥нити напр€мок на назад
     }
@@ -15,22 +16,18 @@ void moving(bool& movingForward, Sprite& knighter,Sprite& apple,  float KnightSp
     {
         knighter.move(-KnightSpeed, 0);
         apple.move(-AppleSpeed, 0);
-        if (knighter.getPosition().x <= 600) // якщо лицар дос€г к≥нц€ назад
+        line.move(-lineSpeed, 0);
+        if (knighter.getPosition().x <= 200) // якщо лицар дос€г к≥нц€ назад
             movingForward = true; // «м≥нити напр€мок на вперед
 
     }
 }
 
-const float SlopeSpeed = 180.0f; // √оризонтальна швидк≥сть
+const float SlopeSpeed = 0.4f; // √оризонтальна швидк≥сть
 const float SlopeAngle = 45.0f; //  ут кидка (в градусах)
 
-void throwApple(Sprite& apple, float time) {
-    const float UpwardSpeed = 20.0f; // Ўвидк≥сть руху вгору
+void throwApple(Sprite& apple, std::vector<Sprite> scaling) {
+    const float UpwardSpeed = 0.3f; // Ўвидк≥сть руху вгору
+    apple.move(-SlopeSpeed, -UpwardSpeed);
 
-    float angleRad = SlopeAngle * 3.14f / 180.0f; // ѕереведенн€ кута у рад≥ани
-    float displacementX = SlopeSpeed * std::cos(angleRad) * time; // √оризонтальне зм≥щенн€
-    float displacementY = UpwardSpeed * time; // ¬ертикальне зм≥щенн€ вгору
-
-
-    apple.setPosition(-displacementX+800, -displacementY+600);
 }
